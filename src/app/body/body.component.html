@@ -1,9 +1,8 @@
 <div>
     <div style="position: static; background-color: white; border: 1px solid;" class="add-item">
-        <!-- <form >[formGroup]="formItem" (ngSubmit)="onSubmit()" -->
-        <form>
+        <form [formGroup]="formItem" (ngSubmit)="onSubmit()">
             <button type="submit" class="button-plus" style="border: none; width: 10%; height: 50px; background-color: white;">&#43;</button>
-            <input formControllerGroup="item" style="border: none; display: inline; width: 89%; height: 50px; background-color: white;" type="text" placeholder="Add Item">
+            <input formControlName="name" style="border: none; display: inline; width: 89%; height: 50px; background-color: white;" type="text" placeholder="Add Item">
         </form>
     </div>
     <div style="height:50px; border: 1px solid;">Danh sách mẫu</div>

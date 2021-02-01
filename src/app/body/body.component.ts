@@ -15,18 +15,30 @@ export class BodyComponent implements OnInit {
     {img:"assets/img/eggs.jpg", name:"Eggs"},
     {img:"assets/img/milk.jpg", name:"dsjbdsd"},
 
-  ]
-  // formItem= this.frm.group({
-  //   item: ["", Validators.required],
-  // })
+  ];
+  formItem= this.frm.group({
+    name: ['', Validators.required],
+  });
 
-  constructor() { }
+  constructor(private frm : FormBuilder) { }
 
   ngOnInit(): void {
 
   }
 
   onSubmit(){
-    
+    let item: Item= new Item;
+    item.img= "assets/img/milk.jpg";
+    item.name= this.formItem.get('name').value;
+
+    this.addNewItem(item);
+
+    this.formItem.reset;
+    alert("Hi");
   };
+
+  addNewItem(item: Item): string{
+    this.itemList.push(item);
+    return "Success!";
+  }
 }
