@@ -1,0 +1,21 @@
+<style>
+    .item{
+        padding: 10px;
+    }
+
+    .item p:hover{
+        color: green;
+    }
+
+    .item p{
+        font-size: 20px;
+        padding-left: 10px;
+    }
+</style>
+<div class="item" style="height: 70px;">
+    <img style="width: 15%; height: 70px;" [src]="item.img">
+    <p style="width: 65%; height: 70px; display: inline-block; vertical-align: middle;">{{item.name}}</p>
+    <p (click)="onCheck()" style="width: 8%; height: 70px; display: inline-block; vertical-align: middle;"><fa-icon [icon]= "faCheck"></fa-icon></p>
+    <p (click)="onCheck()" style="width: 8%; height: 70px; display: inline-block; vertical-align: middle;"><fa-icon [icon]= "faTrash"></fa-icon></p>
+
+</div>

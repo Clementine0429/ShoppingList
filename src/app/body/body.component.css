@@ -1,0 +1,7 @@
+.add-item{
+    height: auto;
+    background-color: white;
+}
+.add-item .button-plus{
+    width: auto;
+}
