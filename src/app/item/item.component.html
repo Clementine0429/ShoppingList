@@ -15,7 +15,7 @@
 </style>
 <div id="item{{item.name}}" class="item" style="height: 70px;">
     <img style="width: 15%; height: 70px;" [src]="item.img">
-    <p style="width: 65%; height: 70px; display: inline-block; vertical-align: middle;">{{item.name}}</p>
+    <p style="width: 60%; height: 70px; display: inline-block; vertical-align: middle;">{{item.name}}</p>
     <p (click)="onCheck(item)" style="width: 8%; height: 70px; display: inline-block; vertical-align: middle;"><fa-icon [icon]= "faCheck"></fa-icon></p>
     <p (click)="onRemove(item)" style="width: 8%; height: 70px; display: inline-block; vertical-align: middle;"><fa-icon [icon]= "faTrash"></fa-icon></p>
 

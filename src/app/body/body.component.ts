@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import {Item} from 'src/app/model/item';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ItemServiceService} from 'src/app/item-service.service'
+import { ItemServiceService} from 'src/app/item-service.service';
+// import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-body',
@@ -10,27 +11,26 @@ import { ItemServiceService} from 'src/app/item-service.service'
 })
 export class BodyComponent implements OnInit {
   message:string="";
-  // itemList: Item[]= [
-  //   {img:"assets/img/milk.jpg", name:"Milk"},
-  //   {img:"assets/img/eggs.jpg", name:"Eggs"},
-  //   {img:"assets/img/milk.jpg", name:"dsjbdsd"},
-
-  // ];
+  
   formItem= this.frm.group({
     name: ['', Validators.required],
   });
 
   items : ItemServiceService= this.itemList;
 
-  listItem: Item[]= this.getListItem();
+  listItem: any= [] ;
 
   constructor(private frm : FormBuilder, private itemList: ItemServiceService) { }
 
   ngOnInit(): void {
+    this.getListItem();
   }
 
   onSubmit(){
     let item: Item= new Item;
+
+    // id tự generate
+    // item.id= id+1;
     item.img= "assets/img/milk.jpg";
     item.name= this.formItem.get('name').value;
 
@@ -40,13 +40,21 @@ export class BodyComponent implements OnInit {
     alert("Hi");
   };
 
-  addNewItem(item: Item): string{
-    this.items.addNewItem(item);
-    return "Success!";
+  addNewItem(item){
+    // this.items.addNewItem(item);
+    return this.items.addNewItem(item).subscribe(res =>{
+      console.log('Issue added!')
+      // this.ngZone.run(() => this.router.navigateByUrl('/body'))
+    })
   }
 
-  getListItem() : Item[]{
-    return this.items.getListItem();
+  getListItem() {
+    // return this.items.getListItem().subscribe((data:{}) => {
+    //   this.listItem= data;
+    // });
+    return this.items.getListItem().subscribe((data: {}) => {
+      this.listItem = data;
+    })
   }
   
 }

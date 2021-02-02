@@ -30,7 +30,7 @@ export class ItemComponent implements OnInit {
     html= '<div id="item" class="item" style="height: 70px "><p style="font-size:20px">item checked out</p></div>';
     document.getElementById(i).outerHTML= html;
 
-    let itemList : Item[]= this.itemService.getListItem();
+    let itemList : any =  this.itemService.getListItem();
     itemList.forEach((value) => {
       if(value.name==item.name)
       {
@@ -41,6 +41,9 @@ export class ItemComponent implements OnInit {
   }
 
   onRemove(item){
-    this.itemService.removeItem(item);
+    // this.itemService.removeItem(item);
+    this.itemService.removeItem(item).subscribe(data =>{
+      console.log("Item deleted")
+    })
   }
 }
